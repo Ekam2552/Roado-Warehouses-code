@@ -64,3 +64,26 @@ function isValidTrips(trips: Trip[], shipment: Shipment): boolean {
 
   return true;
 }
+
+// Example usage
+const shipment: Shipment = {
+  pickups: ["A", "B"],
+  drops: ["C", "D"],
+};
+
+const tripsValid: Trip[] = [
+  { pickup: ["A"], intermediate: "W", drop: ["C"] },
+  { pickup: ["B"], intermediate: "W", drop: ["D"] },
+  { pickup: ["W"], drop: ["C"] },
+  { pickup: ["W"], drop: ["D"] },
+];
+
+const tripsInvalid: Trip[] = [
+  { pickup: ["A"], intermediate: "W1", drop: ["C"] },
+  { pickup: ["B"], intermediate: "W2", drop: ["D"] },
+  { pickup: ["W3"], drop: ["C"] },
+  { pickup: ["W4"], drop: ["D"] },
+];
+
+console.log("Trips Validity (Valid):", isValidTrips(tripsValid, shipment)); // Output: true
+console.log("Trips Validity (Invalid):", isValidTrips(tripsInvalid, shipment)); // Output: false
